@@ -27,7 +27,7 @@ streamlit.dataframe(fruits_to_show)
 
 # create the response code to block (called a function)
 def get_fruityvice_data(this_friut_choice):
-  fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+ this_friut_choice)
+  fruityvice_response = requests.get("https://fruityvice.com/api/fruit/" + this_friut_choice)
   fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
   return fruityvice_normalized
 
@@ -39,7 +39,7 @@ try:
     streamlit.error("Please select a fruit to get information")
   else:
     back_from_function = get_fruityvice_data(fruit_choice)
-    streamlit.dataframe(fruityvice_normalized)
+    streamlit.dataframe(back_from_function)
 except URLError as e:
   streamlit.error()
   
